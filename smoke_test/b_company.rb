@@ -32,7 +32,7 @@ class Login < Test::Unit::TestCase
 
       xpath = "//vox-select-field[contains(@options,'industries')]/div/select"
       select = Selenium::WebDriver::Support::Select.new(@driver.find_element(:xpath,xpath))
-      select.select_by(:text,"Banks")
+      select.select_by(:text,"Manufacturing Company")
 
       xpath = "//vox-select-field[contains(@options,'leadSources')]/div/select"
       select = Selenium::WebDriver::Support::Select.new(@driver.find_element(:xpath,xpath))

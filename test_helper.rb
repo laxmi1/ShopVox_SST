@@ -91,6 +91,10 @@ def login
     @driver.find_element(:id, "password").send_keys users(:laxmi)["password"] 
     @driver.find_element(:name, "commit").click
 end
+
+def get_Present
+    time = Time.now.strftime("%Y%m%d-%H%M%S")
+end
 def wait_for_ajax(driver)
    wait = Selenium::WebDriver::Wait.new(:timeout => 30)
    wait.until { driver.execute_script("return jQuery.active == 0") } 

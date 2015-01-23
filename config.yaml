@@ -1,0 +1,6 @@
+#base_url: http://demo.localhost:3000
+base_url: http://app.shopvox.com
+# new_account_url: http://app.localhost:3000
+# currency: $
+# currency_separator: ","
+email_url: https://mail.google.com

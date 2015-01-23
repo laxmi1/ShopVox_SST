@@ -1,0 +1,26 @@
+ravi:
+  name: Ravi
+  email: ravi@techvoxinc.com
+  password: test123
+  incorrect_password: test1234
+rao:
+  name: Rao
+  email: rao@techvoxinc.com
+  password: test123
+
+laxmi:
+  name: Laxmi
+  email: laxmi@techvoxinc.com
+  password: laxmi123
+  incorrect_password: test1234
+
+hari:
+  email: hari@techvoxinc.com
+  password: test123
+  incorrect_password: test1234
+
+admin:
+  email: support@shopvox.com
+  password: go ahead make my day
+  incorrect_password: test1234
+

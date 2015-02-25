@@ -17,26 +17,26 @@ class Login < Test::Unit::TestCase
     assert_equal [], @verification_errors
   end
   
-# Test to create quote from company page
-  def test_quote_from_company page
-
+# Test to create order from company page
+  def test_order_creation_from_company
       getElement_text("Companies").click
 
       getElement_text("company_name_data").click
 
       getElement_xpath("company_actions").click
 
-      getElement_text("Quote").click
+      getElement_text("Order").click
 
-      getElement_placeholder("Title").send_keys "Automation Quote "+get_Present
-       
-      getElement_placeholder_text("About this quote").send_keys "Created by using Automation"
+      getElement_placeholder("Title").send_keys "Automation Order "+get_Present
       
+      getElement_placeholder_text("About this order").send_keys "Created by using Automation"
+           
       getElement_xpath("save").click
 
       wait_for_ajax(@driver)
 
       puts "Transaction name "+getElement_xpath("trans_name").text
-   end
+
+    end
 
 end

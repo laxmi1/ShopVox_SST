@@ -1,0 +1,79 @@
+xpath : "//button[@class='button transparent dropdown-toggle ng-scope']"
+Companies : Companies
+New_company : New company
+New_Company : New Company
+More_info : More info
+Less_info : Less info
+Add_address :  Add another address
+
+#dropdowns
+industry_select : "//vox-select-field[contains(@options,'industries')]/div/select"
+source_select :  "//vox-select-field[contains(@options,'leadSources')]/div/select"
+
+placeHolder_start : "//input[@placeholder='"
+placeHolder_end : "']"
+placeHolder_start_text : "//textarea[@placeholder='"
+
+#buttons
+save : "//button[@role='button']"
+
+
+# + symbols
+industry_add : "//a[@ng-click='showNewIndustryModal()']/i"
+source_add : "//a[@ng-click='showNewLeadSourceModal()']/i"
+float_add : "//i[@class='fa fa-plus-circle']"
+
+#modal box
+popup_name :  "//div[@class='modal-body']/section/vox-text-field/div/div/input"
+popup_save :  "//div[@class='modal-footer']/submit-button/button"
+popup_ok : "//div[@class='modal-footer ng-scope']/button"
+
+
+#Company page
+contact_name : "//div[@class='form-body narrow sm']/section[5]/div/div/text-field/div/div/input"
+contact_email : "//div[@class='form-body narrow sm']/section[5]/div/div[2]/text-field/div/div/input"
+primary_email : //input
+primary_phone : 13414414
+address_select : "//vox-select-field[@placeholder='Select type']/div/select"
+company_actions : "//button[@class='button dropdown-toggle ng-scope']"
+job_company :  "//ul[@class='dropdown-menu pull-right']/li[7]/a"
+
+
+
+
+#Comapny info
+company_name_data: Automation Company
+company_contact_data : Automation Primary Contact
+contact_email_data : automation@shopvox.com
+
+# Names
+Quote : Quote
+Order : Order
+Invoice : Invoice
+
+
+#Transaction name
+trans_name : "//h1[@class='title ng-binding']/small" 
+company_name : "//h1[@class='title ng-binding']"
+
+#job page
+due_date_cal : "//i[@class='fa fa-calendar'][1]"
+date_next : "//th[@class='next']"
+date_select : "//table[@class='table-condensed']/tbody/tr[4]/td[4]"
+file_id : fileUploadInput
+
+
+#job states
+start_design : Start design
+upload_proof : Upload proof
+select_proof : Select proof
+file_picker : filepicker_dialog
+proof_upload_id : fileUploadInput
+send_review : "//div[@class='primary']/a"
+#type_user : select2-input ui-select-search ng-pristine ng-valid
+type_user : "//input[@class='select2-input ui-select-search ng-pristine ng-valid']"
+select_user : "//div[@class='select2-result-label ui-select-choices-row-inner']/div"
+
+# flash messages
+review_success_class : "//div[@class='ng-binding ng-scope']"
+review_success_message : Review has been successfully sent.

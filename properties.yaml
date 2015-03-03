@@ -16,7 +16,7 @@ placeHolder_start_text : "//textarea[@placeholder='"
 
 #buttons
 save : "//button[@role='button']"
-
+commit : "//input[@type='submit' and @name='commit']"
 
 # + symbols
 industry_add : "//a[@ng-click='showNewIndustryModal()']/i"
@@ -52,9 +52,13 @@ Order : Order
 Invoice : Invoice
 
 
-#Transaction name
+#names
 trans_name : "//h1[@class='title ng-binding']/small" 
 company_name : "//h1[@class='title ng-binding']"
+store_name : "//div[@id='account-name']/a"
+pos_settings : "//div[@id='account-name']/ul/li[2]/a"
+pricing : 	   "//div[@id='account-name']/ul/li[2]/ul/li[2]/a"
+products :     "//div[@id='account-name']/ul/li[2]/ul/li[2]/ul/li[1]/a"
 
 #job page
 due_date_cal : "//i[@class='fa fa-calendar'][1]"
@@ -77,3 +81,42 @@ select_user : "//div[@class='select2-result-label ui-select-choices-row-inner']/
 # flash messages
 review_success_class : "//div[@class='ng-binding ng-scope']"
 review_success_message : Review has been successfully sent.
+category_success : "//div[@class='flash-message success in']/div[2]"
+
+
+# products
+product_name : Automation Product Basic
+product_type : Product Types
+product_category : Product Categories
+product_new : New product
+product_count_search : dynatable-query-search-
+product_count_id : dynatable-record-count-
+product_after_search : "//table[@class='table table-hover table-striped dynatable-loaded']/tbody/tr/td[1]/a"
+product_name_id : product_name
+product_description_id : product_description
+product_type_id : product_product_type_id
+product_category_id : product_category_id
+product_sub_category_id : product_sub_category_id
+product_income_coa_account_id : product_income_coa_account_id
+product_cog_coa_account_id : product_cog_coa_account_id
+product_cost_in_dollars_id : product_cost_in_dollars
+product_price_in_dollars_id : product_price_in_dollars
+product_part_number_id : product_part_number
+product_production_details_id : product_production_details
+product_other_info_id : product_other_info
+
+
+
+#product types
+new_product_type_text : New Product Type
+new_product_category_text : New Product category
+category_name_id : category_name
+product_type_name : Automation Product Type
+product_category_name : Automation Product Category
+product_sub_type : category_parent_id
+
+
+# line items
+add_line_item : "//div[@class='add-new-line-item']/a"
+product_name_search : "//button[@class='btn btn-default btn-block ui-select-toggle']"
+item_first : "//a[@class='ui-select-choices-row-inner']/div/span"

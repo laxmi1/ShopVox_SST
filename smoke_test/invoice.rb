@@ -17,19 +17,22 @@ class Login < Test::Unit::TestCase
     assert_equal [], @verification_errors
   end
   
-# Test to create order from company page
-  def test_order_creation_from_company
+# Test to create invoice from company page
+  def test_invoice_creation_company_page
+
+      check_product
+      
       getElement_text("Companies").click
 
       getElement_text("company_name_data").click
 
       getElement_xpath("company_actions").click
 
-      getElement_text("Order").click
+      getElement_text("Invoice").click
 
-      getElement_placeholder("Title").send_keys "Automation Order "+get_Present
-      
-      getElement_placeholder_text("About this order").send_keys "Created by using Automation"
+      getElement_placeholder("Title").send_keys "Automation Invoice "+get_Present
+
+      getElement_placeholder_text("About this invoice").send_keys "Created by using Automation"
            
       getElement_xpath("save").click
 
@@ -37,6 +40,7 @@ class Login < Test::Unit::TestCase
 
       puts "Transaction name "+getElement_xpath("trans_name").text
 
-    end
+      add_line_item
+   end
 
 end

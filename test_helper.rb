@@ -102,11 +102,15 @@ end
 def get_path
     path = Dir.pwd
 end
+
 #find element by xpath
 def getElement_xpath(key)
     xpath = Keys_CONFIG[key]
-    #puts xpath
-    @driver.find_element(:xpath,xpath)
+    begin
+      @driver.find_element(:xpath,xpath)
+    rescue
+        puts "Element : "+xpath+" not found"
+    end  
 end
 
 
@@ -141,6 +145,7 @@ def getElement_placeholder(text)
     @driver.find_element(:xpath,xpath)
 end
   
+# find element by tagname textarea 
 def getElement_placeholder_text(text)  
     xpath = Keys_CONFIG["placeHolder_start_text"]+text+Keys_CONFIG["placeHolder_end"]
     @driver.find_element(:xpath,xpath)
@@ -205,10 +210,9 @@ def create_company()
       getElement_text("New_company").click
       
       cmpny_Name = Keys_CONFIG["company_name_data"]
-      # @driver.find_element(:xpath,xpath).send_keys "Automation Company "+time
+
       getElement_placeholder("Name").send_keys(cmpny_Name)
 
-      #xpath = "div[@class='col-sm-6']/text-field/div/div/input"
       getElement_xpath("contact_name").send_keys Keys_CONFIG["company_contact_data"]
     
       getElement_xpath("contact_email").send_keys Keys_CONFIG["contact_email_data"]
@@ -219,3 +223,146 @@ def create_company()
 
       getElement_xpath("save").click
 end
+
+def check_product(name=nil)
+      go_to_products
+      @prd_name = Keys_CONFIG["product_name"]
+      if(name!=nil)
+        @prd_name = Keys_CONFIG["product_name"]+name
+      end
+      getElement_id("product_count_search").send_keys @prd_name
+      sleep(3)
+      puts getElement_id("product_count_id").text 
+      xpath = Keys_CONFIG["product_after_search"]
+      begin
+          @driver.find_element(:xpath,xpath)
+          puts "Product already created"    
+      rescue
+        puts "Product to be created"
+        if(name!=nil)
+          add_Product(name)
+        else
+          add_Product
+        end
+      end
+end
+
+# add a product by creating new product type and category
+def add_Product(name=nil)
+    
+    if(name !=nil)
+      puts "inside not null"
+      add_Product_Type(name)
+      go_to_products
+      add_Product_Category(name)
+
+    else
+      puts "inside else"
+      add_Product_Type
+      go_to_products
+      add_Product_Category
+    end
+
+    go_to_products
+
+    @product_name = Keys_CONFIG["product_name"]
+    @product_type = Keys_CONFIG["product_type_name"]
+    @product_category = Keys_CONFIG["product_category_name"]
+
+    # to take option name
+    if(name!=nil)
+      @product_name = Keys_CONFIG["product_name"]+name
+      @product_type = Keys_CONFIG["product_type_name"] + name
+      @product_category = Keys_CONFIG["product_category_name"]+name
+    end
+    getElement_text("product_new").click
+    getElement_id("product_name_id").send_keys @product_name
+    getElement_id("product_description_id").send_keys "created by using automation"
+     
+
+    getElement_id("product_type_id").send_keys @product_type
+    sleep(3)
+    
+    # to take away focus
+    getElement_id("product_cost_in_dollars_id").clear
+    getElement_id("product_cost_in_dollars_id").send_keys "30"
+    sleep(5)
+
+    getElement_id("product_category_id").send_keys @product_category
+    sleep(3)
+    getElement_id("product_sub_category_id").send_keys Keys_CONFIG["product_category_name"]
+    getElement_id("product_income_coa_account_id").send_keys "Accounts Receivable - 1200"
+    getElement_id("product_cog_coa_account_id").send_keys "Cost of Materials - 5100"
+
+    getElement_id("product_price_in_dollars_id").clear
+    getElement_id("product_price_in_dollars_id").send_keys "50"   
+
+    getElement_id("product_part_number_id").send_keys "Automate-1243"
+    getElement_id("product_production_details_id").send_keys "Automation Production Details"
+    getElement_id("product_other_info_id").send_keys "Automation Other Info Details"
+    getElement_xpath("commit").click
+
+    puts  getElement_xpath("category_success").text
+end
+
+def go_to_products
+    getElement_xpath("store_name").click
+    mouseHover(getElement_xpath("pos_settings"))
+    sleep(2)
+    mouseHover(getElement_xpath("pricing"))
+    sleep(2)
+    getElement_xpath("products").click    
+end
+
+
+def add_Product_Type(name=nil)
+    getElement_text("product_type").click
+    getElement_text("new_product_type_text").click
+    if (name!=nil)
+      @prd_type_name = Keys_CONFIG["product_type_name"] + name
+    else
+      @prd_type_name = Keys_CONFIG["product_type_name"]
+    end
+    getElement_id("category_name_id").send_keys @prd_type_name
+    getElement_xpath("commit").click
+    puts  getElement_xpath("category_success").text
+end
+
+def add_Product_Category(name=nil)
+    getElement_text("product_category").click
+    getElement_text("new_product_category_text").click
+    @prd_cat_name = Keys_CONFIG["product_category_name"]
+    @prd_type_name= Keys_CONFIG["product_type_name"]
+    if(name!=nil)
+      @prd_cat_name = Keys_CONFIG["product_category_name"]+name
+      @prd_type_name= Keys_CONFIG["product_type_name"]+name
+    end
+    getElement_id("category_name_id").send_keys @prd_cat_name
+    getElement_id("product_sub_type").send_keys @prd_type_name
+    getElement_xpath("commit").click
+    puts  getElement_xpath("category_success").text
+end
+
+# method to add a product as a line item
+def add_line_item(name=nil)
+      
+      getElement_xpath("add_line_item").click
+
+      sleep(5)
+
+      getElement_xpath("product_name_search").click
+
+      product_name = Keys_CONFIG["product_name"]
+
+      getElement_placeholder("Search for product...").send_keys product_name
+
+      sleep(2)
+
+      getElement_xpath("item_first").click
+
+      sleep(3)
+
+      getElement_xpath("popup_save").click
+
+      sleep(5)
+   end

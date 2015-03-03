@@ -19,6 +19,8 @@ class Login < Test::Unit::TestCase
   
 # Test to create company from company page
   def test_company_creation_a
+
+      puts "Company creation from company page"
       time = get_Present
 
       getElement_text("Companies").click
@@ -70,12 +72,18 @@ class Login < Test::Unit::TestCase
 
       sleep(5)      
 
-      getElement_xpath("popup_ok").click
+      begin
+        getElement_xpath("popup_ok").click
+      rescue
+        puts "Special Info alert not present"
+      end
 
       puts getElement_xpath("company_name").text.to_s+" end"
    end
 
    def  test_company_creation_b_floatbar
+
+      puts "Company creation for float bar"
       time = get_Present
       #mouseHover(getElement_xpath("float_add"))
       getElement_xpath("float_add").click

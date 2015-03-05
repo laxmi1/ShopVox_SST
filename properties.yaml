@@ -17,6 +17,8 @@ placeHolder_start_text : "//textarea[@placeholder='"
 #buttons
 save : "//button[@role='button']"
 commit : "//input[@type='submit' and @name='commit']"
+alert_yes : "//div[@class='modal-footer ng-scope']/button[2]"
+
 
 # + symbols
 industry_add : "//a[@ng-click='showNewIndustryModal()']/i"
@@ -50,22 +52,26 @@ contact_email_data : automation@shopvox.com
 Quote : Quote
 Order : Order
 Invoice : Invoice
-
+To_order : To order
+To_invoice : To invoice
 
 #names
 trans_name : "//h1[@class='title ng-binding']/small" 
 company_name : "//h1[@class='title ng-binding']"
 store_name : "//div[@id='account-name']/a"
+account_settings : "//*[@id='account-name']/ul/li[1]/a"
+pipeline : "//*[@id='account-name']/ul/li[1]/ul/li[6]/a"
 pos_settings : "//div[@id='account-name']/ul/li[2]/a"
 pricing : 	   "//div[@id='account-name']/ul/li[2]/ul/li[2]/a"
 products :     "//div[@id='account-name']/ul/li[2]/ul/li[2]/ul/li[1]/a"
+payments : "//div[@id='account-name']/ul/li[2]/ul/li[8]/a"
 
 #job page
 due_date_cal : "//i[@class='fa fa-calendar'][1]"
 date_next : "//th[@class='next']"
 date_select : "//table[@class='table-condensed']/tbody/tr[4]/td[4]"
 file_id : fileUploadInput
-
+date_custom : "//i[@class='fa fa-calendar']"
 
 #job states
 start_design : Start design
@@ -91,7 +97,7 @@ product_category : Product Categories
 product_new : New product
 product_count_search : dynatable-query-search-
 product_count_id : dynatable-record-count-
-product_after_search : "//table[@class='table table-hover table-striped dynatable-loaded']/tbody/tr/td[1]/a"
+product_after_search : "//table[@class='table table-hover table-striped dynatable-loaded']/tbody/tr/td[1]"
 product_name_id : product_name
 product_description_id : product_description
 product_type_id : product_product_type_id
@@ -120,3 +126,24 @@ product_sub_type : category_parent_id
 add_line_item : "//div[@class='add-new-line-item']/a"
 product_name_search : "//button[@class='btn btn-default btn-block ui-select-toggle']"
 item_first : "//a[@class='ui-select-choices-row-inner']/div/span"
+
+#pipeline
+pipeline_new : "//a[@class='button transparent white not-important']/i"
+pipeline_name : Automated Pipeline
+pipeline_description : Pipeline created using Automation
+pipeline_name_id : pipeline_name
+pipeline_description_id : pipeline_description
+
+# sales leads 
+sales_leads : Sales Leads
+sales_lead_new : New Sales lead
+sales_lead_name : Automated Sales Leads
+sales_lead_description : Created by using Automation
+pipeline_select : "//vox-select-field[@attribute='pipelineId']/div/select"
+
+#more buttons
+quote_more : "//button[@class='button dropdown-toggle on-dark']"
+
+#payment
+payment_name : Automated Cash
+payment_name_id : payment_method_name

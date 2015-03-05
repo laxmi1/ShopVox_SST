@@ -366,3 +366,23 @@ def add_line_item(name=nil)
 
       sleep(5)
    end
+
+   def check_required(key,name=nil)
+      @status = true
+      @req_name = Keys_CONFIG[key]
+      if(name!=nil)
+        @req_name = Keys_CONFIG[key]+name
+      end
+      getElement_id("product_count_search").send_keys @req_name
+      sleep(3)
+      puts getElement_id("product_count_id").text 
+      xpath = Keys_CONFIG["product_after_search"]
+      begin
+          @driver.find_element(:xpath,xpath)
+          puts "Required already created"    
+      rescue
+        puts "Required need to be created"
+        @status = false
+      end
+      @status
+    end

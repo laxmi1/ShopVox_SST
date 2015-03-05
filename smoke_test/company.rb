@@ -1,7 +1,7 @@
 load File.dirname(__FILE__) +  '/../test_helper.rb'
 
 
-class Login < Test::Unit::TestCase 
+class Company < Test::Unit::TestCase 
   fixtures :users
 
 #To open firefox browser and the application url

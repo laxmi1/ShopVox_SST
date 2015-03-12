@@ -104,13 +104,17 @@ def get_path
 end
 
 #find element by xpath
-def getElement_xpath(key)
-    xpath = Keys_CONFIG[key]
-    begin
-      @driver.find_element(:xpath,xpath)
-    rescue
+def getElement_xpath(key,d=nil)
+    if(d==nil)
+      xpath = Keys_CONFIG[key]
+      begin
+        @driver.find_element(:xpath,xpath)
+      rescue
         puts "Element : "+xpath+" not found"
-    end  
+      end  
+    elsif(d!=nil)
+      @driver.find_element(:xpath,key)
+    end
 end
 
 
@@ -385,4 +389,14 @@ def add_line_item(name=nil)
         @status = false
       end
       @status
+    end
+
+    # method to compare two variables
+    def compare(val1,val2)
+        puts "inside compare"
+        status = false
+        if(val1.eql?val2)
+          status = true
+        end
+        status
     end

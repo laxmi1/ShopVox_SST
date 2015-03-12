@@ -13,7 +13,7 @@ class Transaction_complete < Test::Unit::TestCase
   end
 # Throws an assertion errors
   def teardown
-    @driver.quit
+    #@driver.quit
     assert_equal [], @verification_errors
   end
   
@@ -21,6 +21,7 @@ class Transaction_complete < Test::Unit::TestCase
   def test_transaction_complete
      
       check_product
+      check_payment_method
 
       getElement_text("Companies").click
 
@@ -37,7 +38,7 @@ class Transaction_complete < Test::Unit::TestCase
       
       getElement_xpath("save").click
 
-      wait_for_ajax(@driver)
+      sleep(5)
 
       puts "Transaction name "+getElement_xpath("trans_name").text
 
@@ -64,21 +65,23 @@ class Transaction_complete < Test::Unit::TestCase
       else
         puts "Quote Converted to Order"
       end
+      sleep(5)
 
-      #make_payment
+      make_payment_order
       getElement_xpath("quote_more").click
       getElement_text("To_invoice").click
       getElement_xpath("save").click
       puts "Order Converted to Invoice"
+      make_payment_invoice
    end
 
-    def make_payment
+    def check_payment_method
       getElement_xpath("store_name").click
       mouseHover(getElement_xpath("pos_settings"))
       getElement_xpath("payments").click
       status = check_required("payment_name")
 
-       # creates required sales lead if not available
+       # creates required payment method if not available
       if(!status)
         getElement_xpath("pipeline_new").click
         getElement_id("payment_name_id").send_keys Keys_CONFIG["payment_name"]
@@ -87,12 +90,56 @@ class Transaction_complete < Test::Unit::TestCase
       end
     end
 
-    def compare(val1,val2)
-        puts "inside compare"
-        status = false
-        if(val1.eql?val2)
-          status = true
+    def make_payment_order
+      initial_payment  = getElement_xpath("payment_total").text
+      puts "initial payment : #{initial_payment}"
+
+      getElement_xpath("quote_more").click
+      #getElement_text("To_invoice").click
+      sleep(5)
+      getElement_text("Record_payment").click
+      sleep(5)
+      getElement_xpath("payment_type").send_keys Keys_CONFIG["payment_name"]
+      amount = 10
+      getElement_placeholder("Amount").send_keys amount
+
+      for i in 1..100
+        xpath = Keys_CONFIG["order_selected_start"]+"#{i}"+Keys_CONFIG["order_selected_end"]
+        checked = getElement_xpath(xpath,"d").selected?
+        if(checked == true)
+          xpath = "//div[@class='table-responsive'][2]/table/tbody[#{i}]/tr/td[5]/div/text-field/div/div/input"
+          getElement_xpath(xpath,"d").clear
+          getElement_xpath(xpath,"d").send_keys amount
+          break
         end
-        status
+      end
+      getElement_xpath("save").click
+      sleep(5)
+      getElement_text("sales_orders").click
+      sleep(3)
+      
+      getElement_xpath("payment_order").click
+      new_payment  = getElement_xpath("payment_total").text
+      puts "New payment : #{new_payment} "       
+    end
+
+    def make_payment_invoice
+
+      initial_payment  = getElement_xpath("payment_total").text
+      puts "initial payment : #{initial_payment}"
+
+      getElement_xpath("quote_more").click
+      sleep(5)
+      getElement_text("Record_payment").click
+      sleep(5)
+      #getElement_xpath("payment_type").send_keys Keys_CONFIG["payment_name"]
+      getElement_xpath("payment_type").send_keys "CASH"
+      amount = 10
+      getElement_placeholder("Amount").clear
+      getElement_placeholder("Amount").send_keys amount
+      getElement_xpath("record_payment").click
+      sleep(5)
+      new_payment  = getElement_xpath("payment_total").text
+      puts "New payment : #{new_payment} "   
     end
 end

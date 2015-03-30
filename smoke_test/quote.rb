@@ -22,6 +22,8 @@ class Quote < Test::Unit::TestCase
 
       check_product
 
+     # check_company
+
       getElement_text("Companies").click
 
       getElement_text("company_name_data").click
@@ -42,6 +44,23 @@ class Quote < Test::Unit::TestCase
 
       add_line_item
 
+   end
+
+   def check_company
+       getElement_text("Companies").click
+       getElement_text("Company name...").send_keys Keys_CONFIG["company_name_data"]
+       wait(2)
+       xpath = "//*[@id='main-section']/div/div[1]/div/div[2]/div/div/div/ul/li[1]/a/div"
+       first_cmpny = getElement_xpath(xpath,"d").text
+
+       status = compare(first_cmpny,Keys_CONFIG["company_name_data"])
+
+       if(status == true)
+        puts "company already created"
+       else
+        puts "company need to created"
+        create_company
+       end
    end
 
 end

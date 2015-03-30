@@ -13,7 +13,7 @@ class Transaction_complete < Test::Unit::TestCase
   end
 # Throws an assertion errors
   def teardown
-    #@driver.quit
+    @driver.quit
     assert_equal [], @verification_errors
   end
   

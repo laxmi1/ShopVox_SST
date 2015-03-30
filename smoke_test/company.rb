@@ -25,7 +25,7 @@ class Company < Test::Unit::TestCase
 
       getElement_text("Companies").click
 
-      getElement_xpath("xpath").click
+      getElement_xpath("new_customer_more").click
 
       getElement_text("New_company").click
       

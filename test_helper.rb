@@ -117,6 +117,16 @@ def getElement_xpath(key,d=nil)
     end
 end
 
+def check_element(key,d=nil)
+  status = false
+  begin
+    @driver.find_element(:xpath,Keys_CONFIG[key])
+    status = true
+  rescue
+    status = false
+  end
+  status
+end
 
 #find element by link text
 def getElement_text(key)
@@ -125,7 +135,7 @@ def getElement_text(key)
     #puts text
     @driver.find_element(:link_text,text)
   rescue
-    puts "Element-"+text+" not found"
+    puts "Element -"+text+" not found"
     if text.eql? "Automation Company"
        create_company
        @driver.navigate.refresh
@@ -209,7 +219,7 @@ def create_company()
       time = get_Present
       getElement_text("Companies").click
 
-      getElement_xpath("xpath").click
+      getElement_xpath("new_customer_more").click
 
       getElement_text("New_company").click
       
@@ -393,10 +403,17 @@ def add_line_item(name=nil)
 
     # method to compare two variables
     def compare(val1,val2)
-        puts "inside compare"
         status = false
         if(val1.eql?val2)
           status = true
         end
         status
+    end
+
+    def wait(time=nil)
+      wt =5
+        if(time!=nil)
+          wt = time
+        end
+        sleep(wt)
     end

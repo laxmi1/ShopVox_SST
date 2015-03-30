@@ -1,4 +1,4 @@
-xpath : "//button[@class='button transparent dropdown-toggle ng-scope']"
+new_customer_more : "//button[@class='button transparent dropdown-toggle ng-scope']"
 Companies : Companies
 New_company : New company
 New_Company : New Company
@@ -6,6 +6,9 @@ More_info : More info
 Less_info : Less info
 Add_address :  Add another address
 
+
+transactions : Transactions
+purchase_orders : Purchase orders
 #dropdowns
 industry_select : "//vox-select-field[contains(@options,'industries')]/div/select"
 source_select :  "//vox-select-field[contains(@options,'leadSources')]/div/select"
@@ -33,6 +36,7 @@ popup_ok : "//div[@class='modal-footer ng-scope']/button"
 
 
 #Company page
+search_result : "//div[@class='records-group ng-scope']/ul/li[1]/a/div"
 contact_name : "//div[@class='form-body narrow sm']/section[5]/div/div/text-field/div/div/input"
 contact_email : "//div[@class='form-body narrow sm']/section[5]/div/div[2]/text-field/div/div/input"
 primary_email : //input
@@ -156,3 +160,44 @@ order_selected_start : "//div[@class='table-responsive'][2]/table/tbody["
 order_selected_end : "]/tr/td/checkbox-field/div/input"
 sales_orders : Sales Orders
 payment_order : "//table[@class='table table-striped table-hover']/tbody/tr/td[2]/a"
+
+#Vendors
+vendors : Vendors
+vendor_new : New vendor
+vendor_name : Automation Vendor
+vendor_legal : Automation legal 
+vendor_contact : Automation Vendor Contact
+vendor_background : Background added by using automation
+
+# PO
+new_po : "//a[@class='button on-dark']"
+po_name : Automation Purchase Order
+po_about : Created by using automation
+vendor_select : "//vox-select-field[@placeholder='Select vendor']/div/select"
+
+# Projects
+project : Projects
+project_new : "//div[@class='secondary']/a/i"
+customer_click : "//vox-dynamic-select[@attribute='companyId']/div/div/div/div/button"
+customer_type : "//input[@placeholder='Select company']"
+customer_select : "//div[@id='ui-select-choices-row-0-0']/a/div"
+project_name : "Automation Project"
+project_description : "Created by using Automation"
+project_lead_source : "//vox-select-field[@options='leadSources']/div/select"
+project_lead_source_option : "Ad Fund"
+sales_rep : "//vox-select-field[@attribute='salesRepId']/div/select"
+production_manager : "//vox-select-field[@attribute='productionManagerId']/div/select"
+project_manager : "//vox-select-field[@attribute='projectManagerId']/div/select"
+project_table : "//table[@class='table table-hover table-striped']/tbody/tr[1]/td[2]/a"
+
+project_quote : Add Quote
+project_order : Add Order
+project_invoice : Add Invoice
+project_job : Add Job
+project_sl : Add Sales Lead
+
+
+
+# Dates
+due_date : "//date-picker[@attribute='dueDate']/div/div/span/i"
+sale_date : "//date-picker[@attribute='saleDate']/div/div/span/i"

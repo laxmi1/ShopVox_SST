@@ -128,7 +128,7 @@ def check_element(key,d=nil)
   status
 end
 
-#find element by link text
+#find element by link text by using keys
 def getElement_text(key)
   begin
     text = Keys_CONFIG[key]
@@ -141,6 +141,15 @@ def getElement_text(key)
        @driver.navigate.refresh
        @driver.find_element(:link_text,text)
     end
+  end
+end
+  
+#find element by link text direct
+def getElement_text_direct(key)
+  begin
+    @driver.find_element(:link_text,text)
+  rescue
+    puts "Element -"+text+" not found"
   end
 end
 
@@ -416,4 +425,24 @@ def add_line_item(name=nil)
           wt = time
         end
         sleep(wt)
+    end
+
+    # method to open required company
+    def get_Company(name=nil)
+
+      getElement_xpath("cust_vendors").click
+
+      getElement_text("Customers").click
+
+      if(name!=nil)
+        getElement_text_direct(name).click
+      else
+        getElement_text("company_name_data").click
+      end
+    end
+
+    # method to open vendors
+    def get_Vendor
+        getElement_xpath("cust_vendors").click
+        getElement_text("vendors").click
     end

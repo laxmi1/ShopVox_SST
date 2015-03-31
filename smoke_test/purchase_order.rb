@@ -30,7 +30,9 @@ class Purchase_Order < Test::Unit::TestCase
 
       getElement_xpath("new_po").click
 
-      getElement_placeholder("Title").send_keys Keys_CONFIG["po_name"]
+      po_name = Keys_CONFIG["po_name"]+" "+get_Present
+
+      getElement_placeholder("Title").send_keys po_name
 
       getElement_placeholder_text("About this PO").send_keys Keys_CONFIG["po_about"]
 
@@ -38,21 +40,16 @@ class Purchase_Order < Test::Unit::TestCase
            
       getElement_xpath("save").click
 
-      wait_for_ajax(@driver)
+      #wait_for_ajax(@driver)
+      wait
 
       puts "Transaction name "+getElement_xpath("trans_name").text
 
    end
 
-   def a_test_rough
-      name = Keys_CONFIG["vendor_name"]
-
-      check_vendor(name)    
-   end
-
    def check_vendor(name)
         vendor = name
-        getElement_text("vendors").click
+        get_Vendor
         getElement_placeholder("Vendor name...").send_keys vendor
         wait
         created = check_element("search_result")
@@ -73,7 +70,7 @@ class Purchase_Order < Test::Unit::TestCase
 
    def create_vendor(name)
       puts "Creating new Vendor with #{name}"
-      getElement_text("vendors").click
+      get_Vendor
       getElement_xpath("new_customer_more").click
       getElement_text("vendor_new").click
       getElement_placeholder("Name").send_keys name

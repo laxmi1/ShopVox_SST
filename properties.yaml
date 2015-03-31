@@ -1,5 +1,6 @@
 new_customer_more : "//button[@class='button transparent dropdown-toggle ng-scope']"
-Companies : Companies
+cust_vendors : "//ul[@id='main-nav']/li[4]/a/span"
+Customers : Customers
 New_company : New company
 New_Company : New Company
 More_info : More info

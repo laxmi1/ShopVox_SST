@@ -18,7 +18,7 @@ class Project < Test::Unit::TestCase
   end
   
 # Test to create project
-  def test_project
+  def a_test_project
 
       # check_company
 
@@ -119,7 +119,7 @@ class Project < Test::Unit::TestCase
       add_line_item
    end
 
-   def add_order
+   def test_add_order
       @driver.get("http://localhost:3000/87498d82-efdb-4c04-b410-361491e34595/dashboard#/projects/bd8bd75f-05a9-4e64-9212-1ab890845106")
       wait
       getElement_xpath("quote_more").click
@@ -131,10 +131,14 @@ class Project < Test::Unit::TestCase
       getElement_placeholder_text("About").send_keys "Created by using Automation"
       
       getElement_xpath("due_date").click
-      #wait
-      #getElement_xpath("date_next").click
+
+
       wait
-      getElement_xpath("date_select").click
+        xpath = "//div[@class='bootstrap-datetimepicker-widget dropdown-menu picker-open top']/div/div[1]/table/thead/tr[1]/th[3]"
+      @driver.find_element(:xpath,xpath).click
+      #getElement_xpath("date_next").click
+      #wait
+      #getElement_xpath("date_select").click
 
       getElement_xpath("record_payment").click
     
@@ -146,3 +150,7 @@ class Project < Test::Unit::TestCase
    end
 
 end
+
+
+# html/body/div[6]/div[4]/div/div[1]/table/thead/tr[1]/th[3]  
+#//div[@class='bootstrap-datetimepicker-widget dropdown-menu picker-open top']/div/div[1]/table/thead/tr[1]/th[3]

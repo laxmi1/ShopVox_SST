@@ -19,9 +19,7 @@ class Job < Test::Unit::TestCase
   
 # Test to create job from company page and send proof for review
   def test_job_from_company_page
-      getElement_text("Companies").click
-
-      getElement_text("company_name_data").click
+      get_Company
 
       getElement_xpath("company_actions").click
 

@@ -22,11 +22,7 @@ class Quote < Test::Unit::TestCase
 
       check_product
 
-     # check_company
-
-      getElement_text("Companies").click
-
-      getElement_text("company_name_data").click
+      get_Company
 
       getElement_xpath("company_actions").click
 

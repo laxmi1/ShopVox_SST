@@ -147,9 +147,9 @@ end
 #find element by link text direct
 def getElement_text_direct(key)
   begin
-    @driver.find_element(:link_text,text)
+    @driver.find_element(:link_text,key)
   rescue
-    puts "Element -"+text+" not found"
+    puts "Text - "+key+" not found"
   end
 end
 
@@ -201,7 +201,11 @@ end
 
 # mouse hover
 def mouseHover(ele)
-    @driver.action.move_to(ele).perform
+    #begin
+      #@driver.action.move_to(ele).perform
+    #rescue
+      ele.click
+    #end
 end
 
 def wait_for_ajax(driver)
@@ -226,10 +230,10 @@ end
 
 def create_company()
       time = get_Present
-      getElement_text("Companies").click
-
+      #getElement_text("Companies").click
+      #getElement_text("Customers").click   
+      wait
       getElement_xpath("new_customer_more").click
-
       getElement_text("New_company").click
       
       cmpny_Name = Keys_CONFIG["company_name_data"]

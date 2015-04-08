@@ -22,10 +22,8 @@ class Transaction_complete < Test::Unit::TestCase
      
       check_product
       check_payment_method
-
-      getElement_text("Companies").click
-
-      getElement_text("company_name_data").click
+      
+      get_Company
 
       getElement_xpath("company_actions").click
 
@@ -71,6 +69,7 @@ class Transaction_complete < Test::Unit::TestCase
       getElement_xpath("quote_more").click
       getElement_text("To_invoice").click
       getElement_xpath("save").click
+      wait
       puts "Order Converted to Invoice"
       make_payment_invoice
    end
@@ -132,8 +131,8 @@ class Transaction_complete < Test::Unit::TestCase
       sleep(5)
       getElement_text("Record_payment").click
       sleep(5)
-      #getElement_xpath("payment_type").send_keys Keys_CONFIG["payment_name"]
-      getElement_xpath("payment_type").send_keys "CASH"
+      getElement_xpath("payment_type").send_keys Keys_CONFIG["payment_name"]
+      #getElement_xpath("payment_type").send_keys "CASH"
       amount = 10
       getElement_placeholder("Amount").clear
       getElement_placeholder("Amount").send_keys amount

@@ -13,25 +13,20 @@ class Project < Test::Unit::TestCase
   end
 # Throws an assertion errors
   def teardown
-    #@driver.quit
+    @driver.quit
     assert_equal [], @verification_errors
   end
   
 # Test to create project
-  def a_test_project
+  def test_project
 
-      # check_company
+      #check_product
 
-      #getElement_text("Companies").click
+      get_Company
 
-      #getElement_text("company_name_data").click
+      getElement_xpath("customer_more").click
 
-      getElement_text("project").click
-
-      wait
-
-      getElement_xpath("project_new").click
-
+      getElement_text_direct("Project").click
       wait
 
       getElement_xpath("customer_click").click
@@ -50,9 +45,9 @@ class Project < Test::Unit::TestCase
       getElement_xpath("project_lead_source").send_keys Keys_CONFIG["project_lead_source_option"]      
       
       getElement_xpath("due_date").click
-
+      wait
       getElement_xpath("date_next").click
-
+      wait
       getElement_xpath("date_select").click
 
       #getElement_xpath("sale_date").click
@@ -73,7 +68,7 @@ class Project < Test::Unit::TestCase
 
       wait
 
-      begin 
+     #begin 
         actual = getElement_xpath("project_table").text
         status = compare(actual,pro_name)
         if(status)
@@ -86,14 +81,14 @@ class Project < Test::Unit::TestCase
           
           get_project(pro_name)
 
-          #add_order
+          add_order
 
         else
           puts "Project not created"
         end
-      rescue
-        puts "Project not created"
-      end
+     # rescue
+     #   puts "Project not created"
+     # end
    end
 
    def get_project(project_name)
@@ -119,9 +114,14 @@ class Project < Test::Unit::TestCase
       add_line_item
    end
 
-   def test_add_order
-      @driver.get("http://localhost:3000/87498d82-efdb-4c04-b410-361491e34595/dashboard#/projects/bd8bd75f-05a9-4e64-9212-1ab890845106")
-      wait
+   def a_test_order
+    @driver.get("http://localhost:3000/87498d82-efdb-4c04-b410-361491e34595/pos#/projects/89c7d42c-d003-4a06-8239-19a875298a43?new=true")
+    wait
+    add_order
+   end
+
+   def add_order
+    
       getElement_xpath("quote_more").click
 
       getElement_text("project_order").click
@@ -130,15 +130,22 @@ class Project < Test::Unit::TestCase
        
       getElement_placeholder_text("About").send_keys "Created by using Automation"
       
-      getElement_xpath("due_date").click
+      getElement_xpath("txn_date").click
 
+      #getElement_xpath("due_date").click
 
       wait
-        xpath = "//div[@class='bootstrap-datetimepicker-widget dropdown-menu picker-open top']/div/div[1]/table/thead/tr[1]/th[3]"
-      @driver.find_element(:xpath,xpath).click
-      #getElement_xpath("date_next").click
-      #wait
-      #getElement_xpath("date_select").click
+
+      getElement_xpath("date_next").click
+      wait
+      getElement_xpath("date_select").click
+      wait
+  
+      date_selected = getElement_placeholder("Select Sales Order date").attribute("value")
+      
+      getElement_placeholder("Select due date").send_keys date_selected
+      
+      getElement_placeholder("Select ship date").send_keys date_selected
 
       getElement_xpath("record_payment").click
     
@@ -150,7 +157,3 @@ class Project < Test::Unit::TestCase
    end
 
 end
-
-
-# html/body/div[6]/div[4]/div/div[1]/table/thead/tr[1]/th[3]  
-#//div[@class='bootstrap-datetimepicker-widget dropdown-menu picker-open top']/div/div[1]/table/thead/tr[1]/th[3]

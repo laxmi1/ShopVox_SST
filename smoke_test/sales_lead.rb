@@ -39,7 +39,7 @@ class Sales_Lead < Test::Unit::TestCase
       getElement_placeholder("Title").send_keys Keys_CONFIG["sales_lead_name"]
       getElement_placeholder_text("Details").send_keys Keys_CONFIG["sales_lead_description"]
 
-      getElement_placeholder("Company Name").send_keys Keys_CONFIG["company_name_data"]
+      getElement_placeholder("Customer Name").send_keys Keys_CONFIG["company_name_data"]
 
       sleep(3)
       xpath = "//ul[@class='dropdown-menu ng-isolate-scope']/li[1]/a"

@@ -1,8 +1,9 @@
 new_customer_more : "//button[@class='button transparent dropdown-toggle ng-scope']"
+customer_more :     "//div[@class='secondary']/div/div/button"
 cust_vendors : "//ul[@id='main-nav']/li[4]/a/span"
 Customers : Customers
-New_company : New company
-New_Company : New Company
+New_company : New customer
+New_Company : New Customer
 More_info : More info
 Less_info : Less info
 Add_address :  Add another address
@@ -67,7 +68,7 @@ trans_name : "//h1[@class='title ng-binding']/small"
 company_name : "//h1[@class='title ng-binding']"
 store_name : "//div[@id='account-name']/a"
 account_settings : "//*[@id='account-name']/ul/li[1]/a"
-pipeline : "//*[@id='account-name']/ul/li[1]/ul/li[6]/a"
+pipeline : "//*[@id='account-name']/ul/li[1]/ul/li[7]/a"
 pos_settings : "//div[@id='account-name']/ul/li[2]/a"
 pricing : 	   "//div[@id='account-name']/ul/li[2]/ul/li[2]/a"
 products :     "//div[@id='account-name']/ul/li[2]/ul/li[2]/ul/li[1]/a"
@@ -171,7 +172,7 @@ vendor_contact : Automation Vendor Contact
 vendor_background : Background added by using automation
 
 # PO
-new_po : "//a[@class='button on-dark']"
+new_po : "//a[@class='button on-dark ng-binding']"
 po_name : Automation Purchase Order
 po_about : Created by using automation
 vendor_select : "//vox-select-field[@placeholder='Select vendor']/div/select"
@@ -202,3 +203,4 @@ project_sl : Add Sales Lead
 # Dates
 due_date : "//date-picker[@attribute='dueDate']/div/div/span/i"
 sale_date : "//date-picker[@attribute='saleDate']/div/div/span/i"
+txn_date : "//date-picker[@attribute='txnDate']/div/div/span/i"

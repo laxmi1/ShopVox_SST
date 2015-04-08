@@ -1,7 +1,7 @@
 load File.dirname(__FILE__) +  '/../test_helper.rb'
 
 
-class Company < Test::Unit::TestCase 
+class Customer < Test::Unit::TestCase 
   fixtures :users
 
 #To open firefox browser and the application url
@@ -17,19 +17,22 @@ class Company < Test::Unit::TestCase
     assert_equal [], @verification_errors
   end
   
-# Test to create company from company page
-  def test_company_creation_a
+# Test to create customer from customer page
+  def test_customer_creation_a
 
       puts "Company creation from company page"
       time = get_Present
 
-      getElement_text("Companies").click
+
+      getElement_xpath("cust_vendors").click
+
+      getElement_text("Customers").click
 
       getElement_xpath("new_customer_more").click
 
       getElement_text("New_company").click
       
-      cmpny_Name = "Automation Company"+time
+      cmpny_Name = "Automation Company "+time
 
       getElement_placeholder("Name").send_keys(cmpny_Name)
 
@@ -81,7 +84,7 @@ class Company < Test::Unit::TestCase
       puts getElement_xpath("company_name").text.to_s+" end"
    end
 
-   def  test_company_creation_b_floatbar
+   def  test_customer_creation_b_floatbar
 
       puts "Company creation for float bar"
       time = get_Present
@@ -90,7 +93,7 @@ class Company < Test::Unit::TestCase
       
       getElement_text("New_Company").click
 
-      cmpny_Name = "Automation Company"+time
+      cmpny_Name = "Automation Company "+time
     
       getElement_placeholder("Name").send_keys(cmpny_Name)
       

@@ -24,7 +24,7 @@ class Customer < Test::Unit::TestCase
       time = get_Present
 
 
-      getElement_xpath("cust_vendors").click
+      getElement_text("cust_vendors").click
 
       getElement_text("Customers").click
 

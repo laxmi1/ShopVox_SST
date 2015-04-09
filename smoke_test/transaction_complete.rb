@@ -100,24 +100,23 @@ class Transaction_complete < Test::Unit::TestCase
       sleep(5)
       getElement_xpath("payment_type").send_keys Keys_CONFIG["payment_name"]
       amount = 10
+      getElement_placeholder("Amount").clear
       getElement_placeholder("Amount").send_keys amount
 
-      for i in 1..100
-        xpath = Keys_CONFIG["order_selected_start"]+"#{i}"+Keys_CONFIG["order_selected_end"]
-        checked = getElement_xpath(xpath,"d").selected?
-        if(checked == true)
-          xpath = "//div[@class='table-responsive'][2]/table/tbody[#{i}]/tr/td[5]/div/text-field/div/div/input"
-          getElement_xpath(xpath,"d").clear
-          getElement_xpath(xpath,"d").send_keys amount
-          break
-        end
-      end
-      getElement_xpath("save").click
-      sleep(5)
-      getElement_text("sales_orders").click
-      sleep(3)
-      
-      getElement_xpath("payment_order").click
+      # this code if for old UI
+      # for i in 1..100
+      #   xpath = Keys_CONFIG["order_selected_start"]+"#{i}"+Keys_CONFIG["order_selected_end"]
+      #   checked = getElement_xpath(xpath,"d").selected?
+      #   if(checked == true)
+      #     xpath = "//div[@class='table-responsive'][2]/table/tbody[#{i}]/tr/td[5]/div/text-field/div/div/input"
+      #     getElement_xpath(xpath,"d").clear
+      #     getElement_xpath(xpath,"d").send_keys amount
+      #     break
+      #   end
+      # end
+
+      getElement_xpath("record_payment").click
+      wait
       new_payment  = getElement_xpath("payment_total").text
       puts "New payment : #{new_payment} "       
     end

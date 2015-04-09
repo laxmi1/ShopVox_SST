@@ -437,7 +437,7 @@ def add_line_item(name=nil)
     # method to open required company
     def get_Company(name=nil)
 
-      getElement_xpath("cust_vendors").click
+      getElement_text("cust_vendors").click
 
       getElement_text("Customers").click
 

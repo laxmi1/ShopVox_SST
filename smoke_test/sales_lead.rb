@@ -49,7 +49,7 @@ class Sales_Lead < Test::Unit::TestCase
       #getElement_placeholder("Select contact").send_keys Keys_CONFIG["company_contact_data"]
 
       # to select contact date
-      date_select(1)
+      #date_select(1)
 
       # to select close date
       #date_select(2,1)

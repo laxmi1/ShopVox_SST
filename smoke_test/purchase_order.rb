@@ -47,37 +47,5 @@ class Purchase_Order < Test::Unit::TestCase
 
    end
 
-   def check_vendor(name)
-        vendor = name
-        get_Vendor
-        getElement_placeholder("Vendor name...").send_keys vendor
-        wait
-        created = check_element("search_result")
-        puts "created is #{created}"
-        if(check_element("search_result"))
-          actual = getElement_xpath("search_result").text
-          status = compare(actual, vendor)
-          puts "#{actual} and #{vendor}"
-          if(!status)
-            create_vendor(vendor)
-          else
-            puts "already created"
-          end
-        else
-          create_vendor(vendor)
-        end
-   end
-
-   def create_vendor(name)
-      puts "Creating new Vendor with #{name}"
-      get_Vendor
-      getElement_xpath("new_customer_more").click
-      getElement_text("vendor_new").click
-      getElement_placeholder("Name").send_keys name
-      getElement_placeholder("Legal name").send_keys Keys_CONFIG["vendor_legal"]
-      getElement_placeholder("Contact").send_keys Keys_CONFIG["vendor_contact"]
-      getElement_placeholder_text("Background info").send_keys Keys_CONFIG["vendor_background"]
-      getElement_xpath("save").click
-      wait
-    end
+   
 end

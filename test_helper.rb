@@ -380,6 +380,9 @@ def add_line_item(name=nil)
       getElement_xpath("product_name_search").click
 
       product_name = Keys_CONFIG["product_name"]
+      if(name!=nil)
+        product_name = Keys_CONFIG["product_name"]+name
+      end
 
       getElement_placeholder("Search for product...").send_keys product_name
 

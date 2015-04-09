@@ -75,11 +75,14 @@ products :     "//div[@id='account-name']/ul/li[2]/ul/li[2]/ul/li[1]/a"
 payments : "//div[@id='account-name']/ul/li[2]/ul/li[8]/a"
 
 #job page
+job_name : "//div[@class='title']/div/a"
 due_date_cal : "//i[@class='fa fa-calendar'][1]"
 date_next : "//th[@class='next']"
 date_select : "//table[@class='table-condensed']/tbody/tr[4]/td[4]"
 file_id : fileUploadInput
 date_custom : "//i[@class='fa fa-calendar']"
+job_due_date : "//input[@placeholder='Select due date']"
+
 
 #job states
 start_design : Start design

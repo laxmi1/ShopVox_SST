@@ -47,5 +47,4 @@ class Purchase_Order < Test::Unit::TestCase
 
    end
 
-   
 end

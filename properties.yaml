@@ -207,3 +207,7 @@ project_sl : Add Sales Lead
 due_date : "//date-picker[@attribute='dueDate']/div/div/span/i"
 sale_date : "//date-picker[@attribute='saleDate']/div/div/span/i"
 txn_date : "//date-picker[@attribute='txnDate']/div/div/span/i"
+
+#dynamic table
+dynamic_table_start : "//table[@class='table table-hover table-striped dynatable-loaded']/tbody/tr["      
+dynamic_table_end : "]/td[1]"

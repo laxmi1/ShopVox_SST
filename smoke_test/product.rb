@@ -13,12 +13,18 @@ class Login < Test::Unit::TestCase
   end
 # Throws an assertion errors
   def teardown
-    @driver.quit
+    #@driver.quit
     assert_equal [], @verification_errors
   end
   
-# Test to create a product 
-  def test_create_product
-      check_product
+# Test to create a product with basic pricing
+  def test_create_product    
+       check_product
    end
+
+  # Test to creat a product with pricing type "Formula" 
+  def test_create_product_formula
+      
+  end
+
 end

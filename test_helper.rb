@@ -251,25 +251,25 @@ def create_company()
       getElement_xpath("save").click
 end
 
-def check_product(name=nil)
+ def check_product(name=nil)
       go_to_products
-      @prd_name = Keys_CONFIG["product_name"]
+      prd_name = Keys_CONFIG["product_name"]
       if(name!=nil)
-        @prd_name = Keys_CONFIG["product_name"]+name
+        prd_name = Keys_CONFIG["product_name"]+name
       end
-      getElement_id("product_count_search").send_keys @prd_name
+      getElement_id("product_count_search").send_keys prd_name
       sleep(3)
-      puts getElement_id("product_count_id").text 
-      xpath = Keys_CONFIG["product_after_search"]
-      begin
-          @driver.find_element(:xpath,xpath)
-          puts "Product already created"    
-      rescue
-        puts "Product to be created"
+      puts getElement_id("product_count_id").text
+      xpath_start  = Keys_CONFIG["dynamic_table_start"]
+      xpath_end = Keys_CONFIG["dynamic_table_end"] 
+      status = false    
+      status = check_in_table("Product",prd_name,xpath_start,xpath_end)
+      puts "status is #{status}"
+      if(!status)
         if(name!=nil)
           add_Product(name)
         else
-          add_Product
+          add_Product(name)
         end
       end
 end
@@ -278,16 +278,14 @@ end
 def add_Product(name=nil)
     
     if(name !=nil)
-      puts "inside not null"
-      add_Product_Type(name)
+      check_Product_Type(name)
       go_to_products
-      add_Product_Category(name)
+      check_Product_Category(name)
 
     else
-      puts "inside else"
-      add_Product_Type
+      check_Product_Type
       go_to_products
-      add_Product_Category
+      check_Product_Category
     end
 
     go_to_products
@@ -341,9 +339,72 @@ def go_to_products
     getElement_xpath("products").click    
 end
 
+ def check_Product_Type(name=nil)
+    getElement_text("product_type").click
+    prd_type_name = Keys_CONFIG["product_type_name"]
+    if (name!=nil)
+      prd_type_name = Keys_CONFIG["product_type_name"] + name
+    end
+
+    getElement_id("product_count_search").send_keys prd_type_name
+    wait
+      puts getElement_id("product_count_id").text 
+      xpath_start  = Keys_CONFIG["dynamic_table_start"]
+      xpath_end = Keys_CONFIG["dynamic_table_end"]
+      status = false  
+      status = check_in_table("Product Type",prd_type_name,xpath_start,xpath_end)
+      if(!status)
+        if(name!=nil)
+           add_Product_Type(name)
+        else
+           add_Product_Type
+        end
+      end
+  end
+
+  def check_Product_Category(name=nil)
+          getElement_text("product_category").click
+          prd_cat_name = Keys_CONFIG["product_category_name"]
+          prd_type_name= Keys_CONFIG["product_type_name"]
+          if(name!=nil)
+            prd_cat_name = Keys_CONFIG["product_category_name"]+name
+            prd_type_name= Keys_CONFIG["product_type_name"]+name
+          end
+          getElement_id("product_count_search").send_keys prd_cat_name
+          wait
+          xpath_start  = Keys_CONFIG["dynamic_table_start"]
+       xpath_end = Keys_CONFIG["dynamic_table_end"]
+      status = false    
+      status = check_in_table("Product Category",prd_cat_name,xpath_start,xpath_end)
+      if(!status)
+        if(name!=nil)
+           add_Product_Category(name)
+        else
+           add_Product_Category
+        end
+      end
+  end
+
+  def check_in_table(prop,expected,xpath_start=nil,xpath_end=nil)
+    status = false
+      for i in 1..10
+        xpath = xpath_start+i.to_s+xpath_end
+        begin
+          actual = @driver.find_element(:xpath,xpath).text
+          if(compare(actual,expected))
+            puts "#{prop} already created"
+            status = true     
+            break
+          end
+        rescue
+          puts "#{prop} need to be created"
+          break
+        end
+      end
+      status
+  end
 
 def add_Product_Type(name=nil)
-    getElement_text("product_type").click
     getElement_text("new_product_type_text").click
     if (name!=nil)
       @prd_type_name = Keys_CONFIG["product_type_name"] + name
@@ -356,7 +417,6 @@ def add_Product_Type(name=nil)
 end
 
 def add_Product_Category(name=nil)
-    getElement_text("product_category").click
     getElement_text("new_product_category_text").click
     @prd_cat_name = Keys_CONFIG["product_category_name"]
     @prd_type_name= Keys_CONFIG["product_type_name"]
